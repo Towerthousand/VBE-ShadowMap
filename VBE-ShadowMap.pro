@@ -1,7 +1,10 @@
-TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
+include(VBE/VBE.pro)
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    commons.cpp \
+    SceneMain/SceneMain.cpp
+
+HEADERS += \
+    commons.hpp \
+    SceneMain/SceneMain.hpp
 
