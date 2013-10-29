@@ -1,13 +1,12 @@
-#include "PlayerCamera.hpp"
+#include "Camera.hpp"
 
-PlayerCamera::PlayerCamera(const vec3f& pos, const vec3f& rot)
+Camera::Camera(const vec3f& pos, const vec3f& rot)
 	: pos(pos), rot(rot), projection(1.0f), view(1.0f) {
 	this->setName("cam");
 	this->setUpdatePriority(2);
-	this->projection = glm::perspective(FOV,float(SCRWIDTH)/float(SCRHEIGHT),ZNEAR,ZFAR);
 }
 
-void PlayerCamera::update(float deltaTime) {
+void Camera::update(float deltaTime) {
 	(void) deltaTime;
 	if(Input::isKeyDown(sf::Keyboard::LShift)) pos.z -= 10*deltaTime;
 	if(Input::isKeyDown(sf::Keyboard::Space)) pos.z += 10*deltaTime;
