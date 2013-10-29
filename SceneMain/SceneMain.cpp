@@ -1,4 +1,5 @@
 #include "SceneMain.hpp"
+#include "PlayerCamera.hpp"
 
 SceneMain::SceneMain() : debugCounter(0.0), fpsCount(0) {
 	this->setName("SCENE");
@@ -14,6 +15,10 @@ SceneMain::SceneMain() : debugCounter(0.0), fpsCount(0) {
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_CULL_FACE); //enable backface culling
 	glCullFace(GL_BACK);
+
+	//add player cam
+	PlayerCamera* cam = new PlayerCamera();
+	cam->addTo(this);
 }
 
 SceneMain::~SceneMain() {
