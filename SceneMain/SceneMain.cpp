@@ -41,20 +41,30 @@ SceneMain::~SceneMain() {
 }
 
 bool SceneMain::loadResources() {
+	//programs
 	ShaderProgram* s = new ShaderProgram();
 	s->makeProgramFromFile("data/shaders/propShader.vert","data/shaders/propShader.frag");
 	Programs.add("propShader",s);
 
+	//meshes
 	Meshes.add("ball",new Mesh("data/meshes/ball.obj"));
 	Meshes.add("box",new Mesh("data/meshes/cube.obj"));
 
+	//textures
 	Texture* t = new Texture(1);
 	t->loadFromFile("data/textures/lava.png");
 	Textures.add("lava",t);
-
 	t = new Texture(1);
 	t->loadFromFile("data/textures/awesome.png");
 	Textures.add("awesome",t);
+
+	//FrameBuffers example
+	RenderTarget* fb1 = new RenderTarget();
+	fb1->attachRenderBuffer(1366,768,RenderTarget::DEPTH,Texture::DEPTH_COMPONENT);
+	fb1->attachTexture(1366,768,RenderTarget::COLOR0,Texture::RGB,0);
+	fb1->addDrawingTarget(RenderTarget::COLOR0);
+	FrameBuffers.add("fb1",fb1);
+	RenderTarget::bindScreen();
 	return true;
 }
 
