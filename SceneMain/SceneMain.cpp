@@ -17,6 +17,9 @@ SceneMain::SceneMain() : debugCounter(0.0), fpsCount(0) {
 	glEnable(GL_CULL_FACE); //enable backface culling
 	glCullFace(GL_BACK);
 
+	//container for shadowmapping
+	//ContainerObject*
+
 	//add player cam
 	Camera* cam = new Camera(vec3f(0,10,15),vec3f(45,0,0));
 	cam->addTo(this);

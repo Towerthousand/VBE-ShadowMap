@@ -2,7 +2,7 @@
 #include "Camera.hpp"
 
 Prop::Prop(std::string meshID, std::string texId) :
-	pos(0.0f), rot(0.0f), scale(1.0f), tex(Textures.get(texId)) {
+	pos(0.0f), rot(0.0f), scale(1.0f), tex(Textures.get(texId)), drawMode(Real) {
 	model.mesh = Meshes.get(meshID);
 	model.program = Programs.get("propShader");
 }
@@ -19,7 +19,14 @@ void Prop::update(float deltaTime) {
 
 void Prop::draw() const {
 	Camera* cam = (Camera*)getGame()->getObjectByName("cam");
-	model.program->uniform("modelViewProjectionMatrix")->set(cam->projection*cam->view*fullTransform);
-	model.program->uniform("sampler")->set(tex);
-	model.draw();
+	switch (drawMode) {
+		case Real:
+			model.program = Programs.get("propShader");
+			model.program->uniform("modelViewProjectionMatrix")->set(cam->projection*cam->view*fullTransform);
+			model.program->uniform("sampler")->set(tex);
+			model.draw();
+			break;
+		case ShadowMap:
+			break;
+	}
 }

@@ -4,6 +4,11 @@
 
 class Prop : public GameObject {
 	public:
+		enum Technique {
+			ShadowMap = 0,
+			Real
+		};
+
 		Prop(std::string meshID, std::string texId);
 
 		void update(float deltaTime);
@@ -14,7 +19,10 @@ class Prop : public GameObject {
 		vec3f scale;
 	private:
 		Texture* tex;
-		Model model;
+		mutable Model model;
+		Technique drawMode;
+
+	friend class ShadowMapContainer;
 };
 
 #endif // PROP_HPP
