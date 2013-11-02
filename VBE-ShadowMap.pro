@@ -17,5 +17,7 @@ HEADERS += \
 
 OTHER_FILES += \
 	data/shaders/propShader.vert \
-	data/shaders/propShader.frag
+	data/shaders/propShader.frag \
+    data/shaders/depthShader.frag \
+    data/shaders/depthShader.vert
 

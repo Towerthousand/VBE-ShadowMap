@@ -1,8 +1,9 @@
 #include "Camera.hpp"
 
-Camera::Camera(const vec3f& pos, const vec3f& rot)
+
+Camera::Camera(const std::string& cameraName, const vec3f& pos, const vec3f& rot)
 	: pos(pos), rot(rot), projection(1.0f), view(1.0f) {
-	this->setName("cam");
+	this->setName(cameraName);
 	this->setUpdatePriority(2);
 }
 

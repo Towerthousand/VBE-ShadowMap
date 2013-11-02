@@ -20,7 +20,7 @@ class Prop : public GameObject {
 	private:
 		Texture* tex;
 		mutable Model model;
-		Technique drawMode;
+		mutable Technique drawMode;
 
 	friend class ShadowMapContainer;
 };
