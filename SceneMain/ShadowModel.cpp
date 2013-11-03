@@ -1,14 +1,14 @@
-#include "Prop.hpp"
+#include "ShadowModel.hpp"
 #include "Camera.hpp"
 #include "ShadowMapContainer.hpp"
 
-Prop::Prop(std::string meshID, std::string texId) :
+ShadowModel::ShadowModel(std::string meshID, std::string texId) :
 	pos(0.0f), rot(0.0f), scale(1.0f), tex(Textures.get(texId)), drawMode(Real) {
 	model.mesh = Meshes.get(meshID);
 	model.program = Programs.get("propShader");
 }
 
-void Prop::update(float deltaTime) {
+void ShadowModel::update(float deltaTime) {
 	(void) deltaTime;
 	transform = mat4f(1.0f);
 	transform = glm::translate(transform,pos);
@@ -18,7 +18,7 @@ void Prop::update(float deltaTime) {
 	transform = glm::scale(transform,scale);
 }
 
-void Prop::draw() const {
+void ShadowModel::draw() const {
 	Camera* pCam = (Camera*)getGame()->getObjectByName("playerCam");
 	Camera* sCam = (Camera*)getGame()->getObjectByName("sunCam");
 	ShadowMapContainer* smc = (ShadowMapContainer*)getGame()->getObjectByName("smc");
@@ -39,8 +39,8 @@ void Prop::draw() const {
 			model.program->uniform("depthBuffer")->set(smc->getDepthTexture());
 			model.program->uniform("lightDir")->set(vec3f(sCam->view[0][2],sCam->view[1][2],sCam->view[2][2]));
 			model.draw();
-		}
 			break;
+		}
 		case ShadowMap:
 			model.program = Programs.get("depthShader");
 			model.program->uniform("modelViewProjectionMatrix")->set(sCam->projection*sCam->view*fullTransform);

@@ -26,7 +26,7 @@ void main() {
 	bias = clamp(bias, 0.0f,0.01f);
 
 	float visibility = 1.0;
-	if ( texture2D( depthBuffer, vShadowCoord.xy).z <  vShadowCoord.z-bias)
+	if ( texture2D( depthBuffer, vShadowCoord.xy).x <  vShadowCoord.z-bias)
 		visibility = 0.0;
 	vec3 materialColor = texture2D(sampler,vTexCoord).xyz;
 	color = vec4(MaterialAmbientColor +

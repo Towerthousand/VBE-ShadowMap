@@ -4,16 +4,18 @@ INCLUDEPATH += .
 SOURCES += main.cpp \
     commons.cpp \
     SceneMain/SceneMain.cpp \
-    SceneMain/Prop.cpp \
     SceneMain/Camera.cpp \
-    SceneMain/ShadowMapContainer.cpp
+    SceneMain/ShadowMapContainer.cpp \
+    SceneMain/ShadowModel.cpp \
+    SceneMain/PlayerCamera.cpp
 
 HEADERS += \
     commons.hpp \
     SceneMain/SceneMain.hpp \
-    SceneMain/Prop.hpp \
     SceneMain/Camera.hpp \
-    SceneMain/ShadowMapContainer.hpp
+    SceneMain/ShadowMapContainer.hpp \
+    SceneMain/ShadowModel.hpp \
+    SceneMain/PlayerCamera.hpp
 
 OTHER_FILES += \
 	data/shaders/propShader.vert \

@@ -1,5 +1,5 @@
-#ifndef PLAYERCAMERA_HPP
-#define PLAYERCAMERA_HPP
+#ifndef CAMERA_HPP
+#define CAMERA_HPP
 #include "commons.hpp"
 
 class Camera : public GameObject {
@@ -14,4 +14,4 @@ class Camera : public GameObject {
 		mat4f view;
 };
 
-#endif // PLAYERCAMERA_HPP
+#endif // CAMERA_HPP

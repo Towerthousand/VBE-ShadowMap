@@ -1,15 +1,15 @@
-#ifndef PROP_HPP
-#define PROP_HPP
+#ifndef SHADOWMODEL_HPP
+#define SHADOWMODEL_HPP
 #include "commons.hpp"
 
-class Prop : public GameObject {
+class ShadowModel : public GameObject {
 	public:
 		enum Technique {
 			ShadowMap = 0,
 			Real
 		};
 
-		Prop(std::string meshID, std::string texId);
+		ShadowModel(std::string meshID, std::string texId);
 
 		void update(float deltaTime);
 		void draw() const;
@@ -25,4 +25,4 @@ class Prop : public GameObject {
 	friend class ShadowMapContainer;
 };
 
-#endif // PROP_HPP
+#endif // SHADOWMODEL_HPP
