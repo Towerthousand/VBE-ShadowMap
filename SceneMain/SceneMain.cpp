@@ -29,7 +29,7 @@ SceneMain::SceneMain() : debugCounter(0.0), fpsCount(0) {
 
 	//add sun camera
 	Camera* sCam = new Camera("sunCam",vec3f(-10,10,10),vec3f(45,45,0));
-	sCam->projection = glm::ortho<float>(-20,20,-20,20,0.1,100);
+	sCam->projection = glm::ortho<float>(-20,20,-20,20,ZNEAR,ZFAR);
 	sCam->addTo(this);
 
 	//add ball

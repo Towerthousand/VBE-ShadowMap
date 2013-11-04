@@ -31,13 +31,16 @@ vec2 poissonDisk[16] = {
 
 void main() {
 
-	// Light emission properties
-	vec3 lightColor = vec3(1,1,1);
-	float lightPower = 0.2f;
+	// Sun light properties
+	vec3 sunLightColor = vec3(1.0f);
+	float sunLightPower = 0.9f;
 
-	// Material properties
-	vec3 MaterialDiffuseColor = texture2D(sampler,vTexCoord).rgb;
-	vec3 MaterialAmbientColor = vec3(0.8,0.8,0.8) * MaterialDiffuseColor;
+	// Ambient light properties
+	vec3 ambientLightColor = vec3(1.0f);
+	float ambientLightPower = 1-sunLightPower;
+
+	// material properties
+	vec3 matDiffuseColor = texture2D(sampler,vTexCoord).rgb;
 
 	float cosTheta = max(dot(normalize(vNormal), normalize(lightDirection)), 0.0);
 
@@ -50,6 +53,6 @@ void main() {
 	for (int i=0;i<sampleNum;i++)
 		visibility -= (1.0f/sampleNum)*(1.0-texture(depthBuffer,vec3(vShadowCoord.xy + poissonDisk[i]/700.0,(vShadowCoord.z-bias)/vShadowCoord.w)));
 	vec3 materialColor = texture(sampler,vTexCoord).xyz;
-	color = vec4(MaterialAmbientColor +
-				 lightColor*cosTheta*visibility*lightPower,1.0f);
+	color = vec4(matDiffuseColor*ambientLightColor*ambientLightPower + //ambient light
+				 matDiffuseColor*sunLightColor*sunLightPower*cosTheta*visibility,1.0f); //sun light
 }
