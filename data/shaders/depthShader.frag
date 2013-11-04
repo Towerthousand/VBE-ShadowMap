@@ -1,2 +1,2 @@
-#version 420
+#version 420 core
 void main(){}

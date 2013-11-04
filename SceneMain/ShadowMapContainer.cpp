@@ -7,6 +7,7 @@ ShadowMapContainer::ShadowMapContainer() : depthBuffer(NULL) {
 	depthBuffer = new RenderTarget();
 	depthBuffer->attachTexture(SCRWIDTH,SCRHEIGHT,RenderTarget::DEPTH,Texture::DEPTH_COMPONENT,2);
 	depthBuffer->getAttachedTexture(RenderTarget::DEPTH)->setFilter(GL_LINEAR,GL_LINEAR);
+	depthBuffer->getAttachedTexture(RenderTarget::DEPTH)->setComparison(GL_LESS);
 	depthBuffer->noDrawingTargets();
 	RenderTarget::bindScreen();
 }
