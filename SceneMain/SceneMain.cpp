@@ -81,14 +81,14 @@ bool SceneMain::loadResources() {
 	Programs.add("depthShader",s);
 
 	//meshes
-	Meshes.add("ball",new Mesh("data/meshes/ball.obj"));
-	Meshes.add("box",new Mesh("data/meshes/cube.obj"));
+	Meshes.add("ball",ResourceLoader::makeMeshFromOBJ("data/meshes/lol.obj"));
+	Meshes.add("box",ResourceLoader::makeMeshFromOBJ("data/meshes/cube.obj"));
 
 	//textures
-	Texture* t = new Texture(0);
+	Texture* t = new Texture();
 	t->loadFromFile("data/textures/lava.png");
 	Textures.add("lava",t);
-	t = new Texture(0);
+	t = new Texture();
 	t->loadFromFile("data/textures/awesome.png");
 	Textures.add("awesome",t);
 

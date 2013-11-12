@@ -2,7 +2,7 @@
 #include "ShadowModel.hpp"
 #include "Camera.hpp"
 
-ShadowMapContainer::ShadowMapContainer() : depthBuffer(NULL) {
+ShadowMapContainer::ShadowMapContainer() : depthBuffer(nullptr) {
 	setName("smc");
 	depthBuffer = new RenderTarget();
 	depthBuffer->attachTexture(SCRWIDTH,SCRHEIGHT,RenderTarget::DEPTH,Texture::DEPTH_COMPONENT,2);
