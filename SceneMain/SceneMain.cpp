@@ -6,8 +6,7 @@
 SceneMain::SceneMain() : debugCounter(0.0), fpsCount(0) {
 	this->setName("SCENE");
 
-	if (!loadResources())
-	{VBE_ASSERT(false, "Could not load resources for SceneMain" );}
+	loadResources();
 
 	//GL stuff..:
 	glClearColor(0,0,0,1);
@@ -71,28 +70,16 @@ SceneMain::~SceneMain() {
 	AudioManager::clear();
 }
 
-bool SceneMain::loadResources() {
+void SceneMain::loadResources() {
 	//programs
-	ShaderProgram* s = new ShaderProgram();
-	s->makeProgramFromFile("data/shaders/propShader.vert","data/shaders/propShader.frag");
-	Programs.add("propShader",s);
-	s = new ShaderProgram();
-	s->makeProgramFromFile("data/shaders/depthShader.vert","data/shaders/depthShader.frag");
-	Programs.add("depthShader",s);
-
+	Programs.add("propShader",ResourceLoader::makeProgramFromFile("data/shaders/propShader.vert","data/shaders/propShader.frag"));
+	Programs.add("depthShader",ResourceLoader::makeProgramFromFile("data/shaders/depthShader.vert","data/shaders/depthShader.frag"));
 	//meshes
 	Meshes.add("ball",ResourceLoader::makeMeshFromOBJ("data/meshes/lol.obj"));
 	Meshes.add("box",ResourceLoader::makeMeshFromOBJ("data/meshes/cube.obj"));
-
 	//textures
-	Texture* t = new Texture();
-	t->loadFromFile("data/textures/lava.png");
-	Textures.add("lava",t);
-	t = new Texture();
-	t->loadFromFile("data/textures/awesome.png");
-	Textures.add("awesome",t);
-
-	return true;
+	Textures.add("lava",ResourceLoader::makeTextureFromFile("data/textures/lava.png"));
+	Textures.add("awesome",ResourceLoader::makeTextureFromFile("data/textures/awesome.png"));
 }
 
 void SceneMain::update(float deltaTime) {
