@@ -53,8 +53,8 @@ void main() {
 	float visibility = 1.0;
 	float bias = 0.005*tan(acos(cosTheta));
 	bias = clamp(bias, 0.0f,0.01f);
-        int sampleNum = 4;
-        for (int i=0;i<sampleNum;i++)
+	int sampleNum = 4;
+	for (int i=0;i<sampleNum;i++)
 		visibility -= (1.0f/sampleNum)*(1.0-texture(depthBuffer,vec3(vShadowCoord.xy + poissonDisk[i]/700.0,(vShadowCoord.z-bias)/vShadowCoord.w)));
 
 	color = vec4(matDiffuseColor*ambientLightColor*ambientLightPower + //ambient light
