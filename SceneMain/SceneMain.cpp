@@ -72,14 +72,14 @@ SceneMain::~SceneMain() {
 
 void SceneMain::loadResources() {
 	//programs
-	Programs.add("propShader",ResourceLoader::makeProgramFromFile("data/shaders/propShader.vert","data/shaders/propShader.frag"));
-	Programs.add("depthShader",ResourceLoader::makeProgramFromFile("data/shaders/depthShader.vert","data/shaders/depthShader.frag"));
+	Programs.add("propShader",ShaderProgram::loadFromFile("data/shaders/propShader.vert","data/shaders/propShader.frag"));
+	Programs.add("depthShader",ShaderProgram::loadFromFile("data/shaders/depthShader.vert","data/shaders/depthShader.frag"));
 	//meshes
-	Meshes.add("ball",ResourceLoader::makeMeshFromOBJ("data/meshes/lol.obj"));
-	Meshes.add("box",ResourceLoader::makeMeshFromOBJ("data/meshes/cube.obj"));
+	Meshes.add("ball",Mesh::loadFromFile("data/meshes/lol.obj"));
+	Meshes.add("box",Mesh::loadFromFile("data/meshes/cube.obj"));
 	//textures
-	Textures.add("lava",ResourceLoader::makeTextureFromFile("data/textures/lava.png"));
-	Textures.add("awesome",ResourceLoader::makeTextureFromFile("data/textures/awesome.png"));
+	Textures.add("lava",Texture::loadFromFile("data/textures/lava.png"));
+	Textures.add("awesome",Texture::loadFromFile("data/textures/awesome.png"));
 }
 
 void SceneMain::update(float deltaTime) {
